@@ -1,0 +1,29 @@
+# Ignorar ambiente virtual e bibliotecas
+.venv/
+venv/
+env/
+
+# Ignorar modelos de IA pesados
+*.onnx
+*.pt
+*.pth
+
+# Pastas de cache do Python
+__pycache__/
+
+# Pastas de datasets e arquivos de dados
+dataset/
+dataset_extraido_limpo/
+dataset_yolo/
+downloads_segundo_dataset/
+capturas/
+
+# Pasta de resultados de treino (comum em YOLO)
+runs/
+
+# Pasta de configurações do IDE (PyCharm/IntelliJ)
+.idea/
+
+# Pasta temporária ou de quarentena
+quarentena/
+

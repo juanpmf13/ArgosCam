@@ -1,0 +1,7 @@
+# Use caminhos absolutos com barras normais para evitar erro de interpretação
+path: C:/ArgosCam/dataset_yolo
+train: images/train
+val: images/val
+
+nc: 5
+names: ['em_pe', 'deitado', 'sentado', 'caindo', 'caido']
