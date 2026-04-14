@@ -1,0 +1,26 @@
+[03:57:17] ✅ SUCESSO: Argos Gate rodando na GPU AMD via DirectML!
+[03:57:18] 👤 Novo ID detectado: 1
+[03:57:18] 👤 Novo ID detectado: 2
+[03:57:24] 🏁 Sistema encerrado pelo usuário.
+[03:59:28] ✅ SUCESSO: Argos Gate rodando na GPU AMD via DirectML!
+[03:59:29] 👤 Novo ID detectado: 1
+[03:59:29] 👤 Novo ID detectado: 2
+[03:59:32] 👤 Novo ID detectado: 3
+[03:59:33] 👤 Novo ID detectado: 4
+[03:59:33] 👤 Novo ID detectado: 5
+[03:59:33] 🚨 QUEDA CONFIRMADA! ID 3. Gravando...
+[03:59:33] 👤 Novo ID detectado: 6
+[03:59:33] 👤 Novo ID detectado: 7
+[03:59:34] 👤 Novo ID detectado: 8
+[03:59:34] 👤 Novo ID detectado: 9
+[03:59:36] 👤 Novo ID detectado: 10
+[03:59:37] 👤 Novo ID detectado: 11
+[03:59:45] 🏁 Sistema encerrado pelo usuário.
+[04:00:01] ✅ SUCESSO: Argos Gate rodando na GPU AMD via DirectML!
+[04:00:01] 👤 Novo ID detectado: 1
+[04:00:02] 👤 Novo ID detectado: 2
+[04:00:03] 🚨 QUEDA CONFIRMADA! ID 1. Gravando...
+[04:00:07] 👤 Novo ID detectado: 3
+[04:00:08] 👤 Novo ID detectado: 4
+[04:00:17] 👤 Novo ID detectado: 5
+[04:00:18] 🏁 Sistema encerrado pelo usuário.

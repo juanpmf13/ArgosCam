@@ -23,4 +23,4 @@ def limpar_labels(label_path):
 # Execute para as duas pastas
 limpar_labels(r"C:\ArgosCam\dataset_yolo\labels\train")
 limpar_labels(r"C:\ArgosCam\dataset_yolo\labels\val")
-print("✅ Labels simplificados! Tente rodar o treinar.py novamente.")
+print("✅ Labels simplificados! Tente rodar o treino_CPU.py novamente.")

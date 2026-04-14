@@ -7,6 +7,9 @@ env/
 *.onnx
 *.pt
 *.pth
+*.zip
+*.tar.gz
+*.7z
 
 # Pastas de cache do Python
 __pycache__/
@@ -17,9 +20,10 @@ dataset_extraido_limpo/
 dataset_yolo/
 downloads_segundo_dataset/
 capturas/
+dataset_yolo.zip
 
 # Pasta de resultados de treino (comum em YOLO)
-runs/
+runs_backup_cpu/
 
 # Pasta de configurações do IDE (PyCharm/IntelliJ)
 .idea/

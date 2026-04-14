@@ -1,0 +1,12 @@
+[04:04:33] ✅ Sistema Iniciado: GPU AMD Ativa (Lógica 7/10)
+[04:04:37] ⚡ ALERTA DISPARADO (7/10): ID 1
+[04:05:01] ✅ Sistema Iniciado: GPU AMD Ativa (Lógica 7/10)
+[04:05:04] ⚡ ALERTA DISPARADO (7/10): ID 1
+[04:05:15] ✅ Sistema Iniciado: GPU AMD Ativa (Lógica 7/10)
+[04:05:17] ⚡ ALERTA DISPARADO (7/10): ID 1
+[04:06:06] ✅ Sistema Iniciado: GPU AMD Ativa (Lógica 7/10)
+[04:06:09] ⚡ ALERTA DISPARADO (7/10): ID 1
+[04:06:27] ✅ Sistema Iniciado: GPU AMD Ativa (Lógica 7/10)
+[04:06:27] ⚡ ALERTA DISPARADO (7/10): ID 1
+[04:06:51] ✅ Sistema Iniciado: GPU AMD Ativa (Lógica 7/10)
+[04:06:52] ⚡ ALERTA DISPARADO (7/10): ID 1

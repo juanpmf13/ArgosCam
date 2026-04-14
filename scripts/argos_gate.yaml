@@ -1,7 +1,8 @@
-# Use caminhos absolutos com barras normais para evitar erro de interpretação
+# C:/ArgosCam/scripts/argos_gate_gpu.yaml
+
 path: C:/ArgosCam/dataset_yolo
 train: images/train
 val: images/val
 
-nc: 5
-names: ['em_pe', 'deitado', 'sentado', 'caindo', 'caido']
+nc: 6
+names: ['em_pe', 'deitado', 'sentado', 'caindo', 'caido', 'agachado']
