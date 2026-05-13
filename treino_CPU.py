@@ -2,58 +2,56 @@ import os
 from ultralytics import YOLO
 
 def treinar_modelo():
-    # 1. Caminhos no formato Windows (Use barras normais / ou duplas \\)
-    caminho_modelo_base = r"C:\ArgosCam\Runs\ArgosGate_Final_Windows\weights\last.pt"
-    caminho_data_yaml = r"C:\ArgosCam\scripts\argos_gate.yaml"
-    diretorio_projeto = r"C:\ArgosCam\Runs"
+    # --- AJUSTE DE CAMINHOS PARA O DISCO D ---
+    caminho_modelo_base = r"D:\ArgosCam\Runs\ArgosGate_D_Drive\weights\last.pt"
+    caminho_data_yaml = r"D:\ArgosCam\scripts\argos_gate.yaml"
+    diretorio_projeto = r"D:\ArgosCam\Runs"
 
-    # 2. Carregar o modelo
-    # Se o arquivo versao3.pt não existir, ele baixará o yolo11n.pt automaticamente
+    # 2. Carregar o modeloq
     if os.path.exists(caminho_modelo_base):
         model = YOLO(caminho_modelo_base)
-        print("✅ Carregando progresso anterior (Versão 3)")
+        print(f"✅ Carregando progresso do Disco D: {caminho_modelo_base}")
     else:
-        model = YOLO("yolo11n.pt")
-        print("⚠️ Versão 3 não encontrada. Começando do yolo11n base.")
+        # Caso o treino novo ainda não tenha gerado o last.pt, tenta o anterior
+        caminho_backup = r"D:\ArgosCam\Runs\ArgosGate_Final_Windows\weights\last.pt"
+        if os.path.exists(caminho_backup):
+            model = YOLO(caminho_backup)
+            print("⚠️ Usando backup da pasta anterior.")
+        else:
+            model = YOLO("yolo11n.pt")
+            print("🆕 Começando do zero com yolo11n.pt")
 
     # 3. Execução do Treino
-    # No Windows, 'device' pode ser 'cpu' para garantir que termine sem erros de driver
     model.train(
-        model=r'C:\ArgosCam\Runs\ArgosGate_Final_Windows2\weights\last.pt',  # <--- AQUI ESTÁ O SEGREDO
-        resume=True,
         data=caminho_data_yaml,
         epochs=80,
         imgsz=640,
         batch=8,
-        device='cpu',
+        device=0,
         workers=0,
-        project=diretorio_projeto,
-        name='ArgosGate_Final_Windows',
-
-        # --- OS CORRETIVOS PARA O ERRO 'NAN' ---
-        amp=False,  # Garantir que está desligado
-        lr0=0.001,  # Diminuir a velocidade de aprendizado inicial
-        lrf=0.01,  # Diminuir a velocidade final
-        warmup_epochs=3.0,  # Dar 3 épocas de "aquecimento" lento para o modelo
-        plots=True,  # Gerar gráficos para vermos onde o erro acontece
-
-        # --- Parâmetros de Rigor (Mantidos) ---
+        project=r"D:\ArgosCam\Runs",  # <--- FORÇA O DISCO D AQUI
+        name='ArgosGate_D_Drive',  # <--- NOME DA PASTA NO D:
+        resume=True,  # <--- MUDE PARA FALSE PARA ELE ACEITAR O NOVO PROJECT
+        exist_ok=True,  # Permite escrever na pasta se ela já existir
+        # --- CONFIGURAÇÕES DE ESTABILIDADE ---
+        amp=True,
+        lr0=0.001,
+        lrf=0.01,
+        warmup_epochs=3.0,
+        plots=True,
+        # --- PARÂMETROS DE RIGOR ---
         cls=2.5,
         box=10.0,
         mixup=0.15,
         close_mosaic=20,
         degrees=15.0,
         scale=0.5,
-        fliplr=0.5,
-        hsv_h=0.015,
-        hsv_s=0.7,
-        hsv_v=0.4
+        fliplr=0.5
     )
 
-    # 4. EXPORTAÇÃO PARA ONNX (A mágica para rodar na GPU AMD depois)
-    print("🚀 Treino finalizado! Exportando para ONNX para rodar na GPU AMD...")
+    # 4. EXPORTAÇÃO
+    print("🚀 Treino finalizado! Exportando para ONNX...")
     model.export(format="onnx", imgsz=640, dynamic=True, simplify=True)
 
 if __name__ == "__main__":
-    # Proteção necessária para Multiprocessing no Windows
     treinar_modelo()

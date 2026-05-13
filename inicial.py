@@ -2,16 +2,49 @@ import numpy as np
 import cv2
 import os
 import time
+import requests
+import json
 from ultralytics import YOLO
 from collections import deque
 
+# --- FUNÇÃO QUE ENVIA PARA A API ---
+def enviar_deteccao(postura, client_id, video_path, info_adicional=""):
+    url = "http://localhost:8080/api/detections"
+
+    # Payload atualizado conforme as novas Entidades do Kotlin
+    # Removido: confidence
+    # Adicionado: Objeto client com ID e videoUrl
+    payload = {
+        "posture": postura,
+        "client": {"id": client_id},
+        "additionalInfo": info_adicional,
+        "videoUrl": video_path
+    }
+
+    try:
+        response = requests.post(
+            url,
+            data=json.dumps(payload),
+            headers={'Content-Type': 'application/json'}
+        )
+        if response.status_code == 200:
+            print(f"✅ Sucesso: Evento registrado para o Cliente {client_id}")
+        else:
+            print(f"⚠️ API retornou erro {response.status_code}: {response.text}")
+        return response.status_code
+    except Exception as e:
+        print(f"❌ Erro ao conectar com a API: {e}")
+        return None
+# --- 0. LiGAÇÃO COM A API
+API_URL = "http://localhost:8080/api/detections"
+
 # --- 1. CONFIGURAÇÕES ---
-FONTE_ARQUIVO_LOCAL = r"C:\Users\juanp\OneDrive\Desktop\queda\veio.mp4"
+FONTE_ARQUIVO_LOCAL = r"C:\Users\juanp\OneDrive\Desktop\queda\veiajapa.mp4"
 LINK_CELULAR = "http://10.0.10.239:8080/video"
 
-PATH_MODELO = r"C:\ArgosCam\Runs\ArgosGate_Final_Windows\weights\best.pt"
-PASTA_ALERTAS = r"C:\ArgosCam\alertas"
-PASTA_LOGS = r"C:\ArgosCam\logs"
+PATH_MODELO = r"D:\ArgosCam\modelos\versão4last.pt"
+PASTA_ALERTAS = r"D:\ArgosCam\alertas"
+PASTA_LOGS = r"D:\ArgosCam\logs"
 COOLDOWN_SECONDS = 15
 
 # Criar pastas
@@ -132,10 +165,24 @@ try:
                     nome_arq = os.path.join(PASTA_ALERTAS, f"QUEDA_ID{id_estabilizado}_{ts}.mp4")
                     print(f"🚨 QUEDA CONFIRMADA! ID {id_estabilizado}")
 
+                    # Salva o vídeo localmente antes de enviar o caminho
                     out = cv2.VideoWriter(nome_arq, cv2.VideoWriter_fourcc(*'mp4v'), FPS_VIDEO, (WIDTH, HEIGHT))
                     for f_buf in buffer_frames: out.write(f_buf)
                     out.release()
+
                     ultimo_salvamento = tempo_atual
+
+                    # --- ALTERAÇÃO AQUI ---
+                    # 1. Definimos o ID do cliente (Certifique-se que este ID existe na tabela 'clients')
+                    ID_DO_CLIENTE_NO_BANCO = 1
+
+                    # 2. Enviamos para a API
+                    enviar_deteccao(
+                        postura="CAIDO",
+                        client_id=ID_DO_CLIENTE_NO_BANCO,
+                        video_path=nome_arq,
+                        info_adicional=f"Queda detectada para a pessoa com ID {id_estabilizado}"
+                    )
 
         # Limpeza de IDs muito antigos do cache de posições
         if tempo_atual % 5 < 0.1:  # Limpa a cada 5 segundos

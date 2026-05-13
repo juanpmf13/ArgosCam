@@ -6,10 +6,10 @@ import time
 from collections import deque
 
 # --- 1. CONFIGURAÇÕES ---
-ONNX_MODEL_PATH = r"C:\ArgosCam\Runs\ArgosGate_Final_Windows\weights\best.onnx"
+ONNX_MODEL_PATH = r"D:\ArgosCam\runs_backup_cpu\detect\train\weights\versao1.onnx"
 VIDEO_PATH = r"C:\Users\juanp\OneDrive\Desktop\queda\veiajapa.mp4"
-PASTA_ALERTAS = r"C:\ArgosCam\alertas"
-PASTA_LOGS = r"C:\ArgosCam\logs"
+PASTA_ALERTAS = r"D:\ArgosCam\alertas"
+PASTA_LOGS = r"D:\ArgosCam\logs"
 COOLDOWN_SECONDS = 15
 
 for p in [PASTA_ALERTAS, PASTA_LOGS]:

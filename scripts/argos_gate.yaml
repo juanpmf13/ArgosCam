@@ -1,6 +1,6 @@
 # C:/ArgosCam/scripts/argos_gate_gpu.yaml
 
-path: C:/ArgosCam/dataset_yolo
+path: D:/ArgosCam/dataset_yolo
 train: images/train
 val: images/val
 

@@ -1,5 +1,5 @@
 # Arquivo: data.yaml para treino Local (WSL)
-path: /mnt/c/ArgosCam/dataset_yolo  # Raiz do dataset
+path: /mnt/d/ArgosCam/dataset_yolo  # Raiz do dataset
 train: images/train                 # Caminho relativo à raiz acima
 val: images/val                     # Caminho relativo à raiz acima
 
