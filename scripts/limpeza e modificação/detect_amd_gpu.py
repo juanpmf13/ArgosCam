@@ -6,8 +6,8 @@ import time
 from collections import deque
 
 # --- 1. CONFIGURAÇÕES ---
-ONNX_MODEL_PATH = r"D:\ArgosCam\runs_backup_cpu\detect\train\weights\versao1.onnx"
-VIDEO_PATH = r"C:\Users\juanp\OneDrive\Desktop\queda\veiajapa.mp4"
+ONNX_MODEL_PATH = r"C:\path\to\your_model.onxx"
+VIDEO_PATH = r"C:\path\to\your_video.mp4"
 PASTA_ALERTAS = r"D:\ArgosCam\alertas"
 PASTA_LOGS = r"D:\ArgosCam\logs"
 COOLDOWN_SECONDS = 15
